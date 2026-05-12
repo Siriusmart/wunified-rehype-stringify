@@ -8,9 +8,14 @@ const rehype_stringify_1 = __importDefault(require("rehype-stringify"));
 class WRehypeStringify extends wp_unified_1.WUnifiedPlugin {
     apply(processor, options) {
         if (options === undefined)
-            return processor.use(rehype_stringify_1.default);
+            processor = processor.use(rehype_stringify_1.default);
         else
-            return processor.use(rehype_stringify_1.default, options);
+            processor = processor.use(rehype_stringify_1.default, options);
+        if (options.snapshot === true)
+            processor.apply(() => (tree) => {
+                this.result.content = structuredClone(tree);
+            });
+        return processor;
     }
 }
 exports.default = WRehypeStringify;

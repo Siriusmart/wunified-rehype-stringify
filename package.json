@@ -1,6 +1,6 @@
 {
     "name": "wunified-rehype-stringify",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "UnifiedJS::RehypeStringify for Webpan",
     "main": "./dist/index.js",
     "types": "./dist/index.d.ts",
