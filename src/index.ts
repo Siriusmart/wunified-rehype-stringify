@@ -4,15 +4,8 @@ import rehypeStringify from "rehype-stringify"
 export default class WRehypeStringify extends WUnifiedPlugin {
     apply(processor: UntypedProcessor, options: any): UntypedProcessor {
         if (options === undefined)
-            processor = processor.use(rehypeStringify)
+            return processor.use(rehypeStringify)
         else
-            processor = processor.use(rehypeStringify, options)
-
-        if (options.snapshot === true)
-            processor.apply(() => (tree: any) => {
-                this.result.content = structuredClone(tree)
-            })
-
-        return processor;
+            return processor.use(rehypeStringify, options)
     }
 }
